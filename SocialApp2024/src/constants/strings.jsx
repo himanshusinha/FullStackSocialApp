@@ -1,6 +1,6 @@
 export default {
   WELCOME_BACK: 'Welcome Back',
-  TO_SOCIAL: 'To Social',
+  TO_SOCIAL: 'To Social Box',
   DONT_HAVE_AN_ACCONT: "Don't have an account ? ",
   SIGN_UP: 'Sign Up',
   ALREADY_HAVE_AN_ACCOUNT: 'Already have an account ? ',

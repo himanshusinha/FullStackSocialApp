@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.BARLOW_MEDIUM,
   },
   subTitle: {
-    fontSize: scale(14),
+    fontSize: scale(12),
     fontFamily: fonts.BARLOW_BOLD,
     color: colors.RED,
   },

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text, Alert} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, Modal} from 'react-native';
 import {Formik} from 'formik';
 import WrapperContainer from '../../../components/wrapperContainer/WrapperContainer';
 import InputField from '../../../components/input/InputField';
@@ -16,6 +16,7 @@ import loginValidationSchema from '../../../utils/loginValidationSchema';
 import {useDispatch} from 'react-redux';
 import routes from '../../../constants/routes';
 import {loginAsyncThunk} from '../../../redux/asyncThunk/authAsyncThunk';
+import Loader from '../../../components/loader/Loader';
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -37,19 +38,22 @@ const LoginScreen = () => {
           console.log('User logged in successfully');
           setIsLoading(false);
         } else if (res && res.payload && !res.payload.status) {
-          Alert.alert(res.payload.message);
+          setErrorMessage(res.payload.message);
           setIsLoading(false);
         }
       })
       .catch(err => {
         console.error('Login error. Response:', err?.data?.message);
-        Alert.alert(err?.data?.message || 'An error occurred');
+        setErrorMessage(err?.data?.message || 'An error occurred');
         setIsLoading(false);
       });
   };
 
   return (
     <WrapperContainer>
+      <Modal transparent={true} animationType="none" visible={isLoading}>
+        {isLoading && <Loader />}
+      </Modal>
       <Formik
         initialValues={{email: '', password: ''}}
         validationSchema={loginValidationSchema}
@@ -64,7 +68,10 @@ const LoginScreen = () => {
         }) => (
           <View style={styles.container}>
             <AppIcon icon={images.social} />
-            <Header title={'Welcome Back'} sub_title={'To Social'} />
+            <Header
+              title={strings.WELCOME_BACK}
+              sub_title={strings.TO_SOCIAL}
+            />
             <View style={styles.inputContainer}>
               <InputField
                 leftIcon={images.email}
@@ -97,13 +104,17 @@ const LoginScreen = () => {
                 <Text style={styles.errorText}>{errors.password}</Text>
               )}
             </View>
-
             <AppButton
+              titleStyle={styles.titleStyle}
               title="Login"
               onPress={handleSubmit}
-              disabled={isLoading}
             />
-            {errorMessage ? <Text>{errorMessage}</Text> : null}
+
+            <View style={styles.buttonContainer}>
+              {errorMessage !== '' && (
+                <Text style={styles.errorText}>{errorMessage}</Text>
+              )}
+            </View>
             <Footer
               onPress={() => navigation.navigate(routes.SIGN_UP)}
               title={strings.DONT_HAVE_AN_ACCONT}

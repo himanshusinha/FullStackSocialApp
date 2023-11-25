@@ -1,4 +1,8 @@
-import {moderateVerticalScale} from 'react-native-size-matters';
+import {
+  moderateScale,
+  moderateVerticalScale,
+  scale,
+} from 'react-native-size-matters';
 import colors from '../../../constants/colors';
 
 import {StyleSheet} from 'react-native';
@@ -21,5 +25,8 @@ const styles = StyleSheet.create({
     color: colors.RED,
     marginTop: moderateVerticalScale(6),
   },
+  buttonStyle: {bottom: moderateScale(30)},
+  gapStyle: {marginHorizontal: moderateScale(12)},
+  titleStyle: {color: colors.WHITE, fontSize: scale(14)},
 });
 export default styles;

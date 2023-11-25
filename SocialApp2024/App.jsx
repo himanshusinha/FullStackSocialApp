@@ -6,10 +6,14 @@ import NetInfo from '@react-native-community/netinfo';
 import NoInternet from './src/components/modal/noInternet/NoInternet';
 import Routes from './src/navigators/Routes';
 import {store, persistor} from './src/redux/store/index';
+import axios from 'axios';
+import {LogBox} from 'react-native';
+LogBox.ignoreAllLogs(true);
 const App = () => {
   const [isOffline, setOfflineStatus] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-
+  const baseurl = 'http://192.168.1.38:8200/socialapp';
+  axios.defaults.baseURL = baseurl;
   React.useEffect(() => {
     const removeNetInfoSubscription = NetInfo.addEventListener(state => {
       const offline = !(state.isConnected && state.isInternetReachable);

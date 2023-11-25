@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Alert} from 'react-native';
+import {View, Text, Alert, Modal} from 'react-native';
 import {Formik} from 'formik';
 import WrapperContainer from '../../../components/wrapperContainer/WrapperContainer';
 import InputField from '../../../components/input/InputField';
@@ -16,12 +16,15 @@ import GenderSelectionButton from '../../../components/button/genderButton/Gende
 import signUpValidationSchema from '../../../utils/signUpValidationSchema';
 import {useDispatch} from 'react-redux';
 import {signUpAsyncThunk} from '../../../redux/asyncThunk/authAsyncThunk';
+import Loader from '../../../components/loader/Loader';
+import {moderateScale, scale} from 'react-native-size-matters';
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
   const [selectedGender, setSelectedGender] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [errorText, setErrorText] = useState('');
 
   const dispatch = useDispatch();
 
@@ -72,6 +75,9 @@ const SignUpScreen = () => {
 
   return (
     <WrapperContainer>
+      <Modal transparent={true} animationType="none" visible={isLoading}>
+        {isLoading && <Loader />}
+      </Modal>
       <Formik
         initialValues={{
           username: '',
@@ -145,16 +151,16 @@ const SignUpScreen = () => {
                 isSelected={selectedGender === 0}
                 onPress={() => {
                   setSelectedGender(0);
-                  setFieldValue('gender', 'Male'); // Set 'Male' when selectedGender is 0
+                  setFieldValue('gender', 'Male');
                 }}
                 imageSource={images.male}
               />
-
+              <View style={styles.gapStyle} />
               <GenderSelectionButton
                 isSelected={selectedGender === 1}
                 onPress={() => {
                   setSelectedGender(1);
-                  setFieldValue('gender', 'Female'); // Set 'Female' when selectedGender is 1
+                  setFieldValue('gender', 'Female');
                 }}
                 imageSource={images.female}
               />
@@ -178,9 +184,10 @@ const SignUpScreen = () => {
             </View>
 
             <AppButton
+              style={styles.buttonStyle}
+              titleStyle={styles.titleStyle}
               title="Sign Up"
               onPress={handleSubmit}
-              disabled={isLoading}
             />
             {errorMessage !== '' && (
               <Text style={styles.errorText}>{errorMessage}</Text>

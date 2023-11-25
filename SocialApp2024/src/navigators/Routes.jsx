@@ -9,12 +9,12 @@ import {NavigationContainer} from '@react-navigation/native';
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
-  const user = useSelector(state => state.auth.user);
+  const accessToken = useSelector(state => state.auth.accessToken);
 
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        {user ? (
+        {accessToken ? (
           <Stack.Screen name={routes.HOME} component={AppStack} />
         ) : (
           <Stack.Screen name={routes.SPLASH} component={AuthStack} />

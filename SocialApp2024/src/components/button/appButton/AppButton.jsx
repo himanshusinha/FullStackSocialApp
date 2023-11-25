@@ -2,15 +2,25 @@ import {Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styles from './styles';
 
-const AppButton = ({title, onPress, disabled, isLoading}) => {
+const AppButton = ({
+  title,
+  onPress,
+  disabled,
+  isLoading,
+  style,
+  titleStyle,
+}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.buttonStyle, disabled ? styles.disabledButton : null]}
+      style={[
+        styles.buttonStyle,
+        disabled ? styles.disabledButton : null,
+        style, // Include the dynamic style
+        titleStyle,
+      ]}
       disabled={disabled}>
-      <Text style={styles.titleStyle}>
-        {isLoading ? 'Signing Up...' : title}
-      </Text>
+      <Text style={titleStyle}>{isLoading ? 'Signing Up...' : title}</Text>
     </TouchableOpacity>
   );
 };

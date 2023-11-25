@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(10),
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: moderateVerticalScale(30),
+    marginTop: moderateVerticalScale(30),
   },
   titleStyle: {
     fontSize: scale(14),
@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: moderateVerticalScale(30),
+  },
+  errorText: {
+    color: colors.RED,
   },
 });
 export default styles;
