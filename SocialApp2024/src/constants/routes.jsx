@@ -1,0 +1,16 @@
+export default {
+  SPLASH: 'SplashScreen',
+  LOGIN: 'LoginScreen',
+  SIGN_UP: 'SignUpScreen',
+  HOME: 'HomeScreen',
+  PROFILE: 'ProfileScreen',
+  ONBOARDING: 'OnBoardingScreen',
+  UPLOAD: 'UploadScreen',
+  SEARCH: 'SearchScreen',
+  TAB_ROUTES: 'TabRoutes',
+  DRAWER_STACK: 'DrawerStack',
+  MAIN_STACK: 'MainStack',
+  AUTH_STACK: 'AuthStack',
+  APP_STACK: 'AppStack',
+  ROOT: 'RootScreen',
+};
