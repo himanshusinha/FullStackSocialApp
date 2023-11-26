@@ -8,6 +8,7 @@ import Routes from './src/navigators/Routes';
 import {store, persistor} from './src/redux/store/index';
 import axios from 'axios';
 import {LogBox} from 'react-native';
+import {MenuProvider} from 'react-native-popup-menu';
 LogBox.ignoreAllLogs(true);
 const App = () => {
   const [isOffline, setOfflineStatus] = React.useState(false);
@@ -30,15 +31,17 @@ const App = () => {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          {isOffline ? (
-            <>
-              <NoInternet show={isOffline} isRetrying={loading} />
-            </>
-          ) : (
-            <Routes />
-          )}
-        </PersistGate>
+        <MenuProvider>
+          <PersistGate persistor={persistor}>
+            {isOffline ? (
+              <>
+                <NoInternet show={isOffline} isRetrying={loading} />
+              </>
+            ) : (
+              <Routes />
+            )}
+          </PersistGate>
+        </MenuProvider>
       </Provider>
     </GestureHandlerRootView>
   );

@@ -42,7 +42,7 @@ const HomeScreen = () => {
               top: posts.length > 0 ? 5 : 0,
             }}
             data={posts}
-            renderItem={({item}) => <ItemPosts item={item} />}
+            renderItem={({item,index}) => <ItemPosts item={item} index={index}/>}
           />
         </View>
       )}

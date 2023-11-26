@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "403128852604",
+    "project_id": "socialapp2024",
+    "storage_bucket": "socialapp2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403128852604:android:8e3b16d7a4a8c02fe5a9f9",
+        "android_client_info": {
+          "package_name": "com.socialapp2024"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJWOQlBU4D6aBFAi2bN1Yt0am1-Zo9hkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

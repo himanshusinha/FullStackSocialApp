@@ -1,52 +1,85 @@
+// PickerComp.js
 import React from 'react';
 import {View, Text, Modal, TouchableOpacity, Image} from 'react-native';
 import styles from './styles';
 import ImagePicker from 'react-native-image-crop-picker';
 
 const PickerComp = props => {
+  const {
+    selectedImage,
+    setSelectedImage,
+    setImageFile,
+    onCancel, // Corrected prop name
+  } = props;
+
   const onGallery = async () => {
     try {
-      const image = await ImagePicker.openPicker({
+      const res = await ImagePicker.openPicker({
         width: 300,
         height: 400,
         cropping: true,
       });
-      console.log(image);
-      props.setImageCallback(image.path);
-      props.onCancel();
+
+      const fileName = res.path.split('/').pop();
+
+      const file = {
+        uri: res?.path,
+        type: res?.mime,
+        name: fileName,
+      };
+
+      setImageFile(file);
+      setSelectedImage(res?.path);
+      onCancel(); // Use the onCancel prop directly
     } catch (error) {
       console.warn(error);
     }
   };
 
-  const onCamera = async () => {
-    try {
-      const image = await ImagePicker.openCamera({
-        width: 300,
-        height: 400,
-        cropping: true,
+  const onCamera = () => {
+    ImagePicker.openCamera({
+      compressImageMaxWidth: 300,
+      compressImageMaxHeight: 300,
+      cropping: true,
+      compressImageQuality: 0.7,
+    })
+      .then(res => {
+        console.log(res);
+        setSelectedImage(res?.path);
+
+        const fileName = res.path.split('/').pop();
+
+        const file = {
+          uri: res?.path,
+          type: res?.mime,
+          name: fileName,
+        };
+
+        setImageFile(file);
+        setSelectedImage(res?.path);
+        onCancel(); // Use the onCancel prop directly
+      })
+      .catch(error => {
+        console.warn(error);
       });
-      console.log(image);
-      props.setImageCallback(image.path);
-      props.onCancel();
-    } catch (error) {
-      console.warn(error);
-    }
   };
 
   return (
     <View style={styles.modalContainer}>
       <Modal
-        onRequestClose={props.modalVisible}
+        onRequestClose={onCancel} // Use the onCancel prop directly
         visible={props.visible}
         transparent={true}
         animationType="slide">
         <TouchableOpacity
-          onPressOut={props.onCancel}
+          onPressOut={onCancel} // Use the onCancel prop directly
           style={styles.modalInnerView}
-          onPressIn={props.onCancel}>
+          onPressIn={onCancel} // Use the onCancel prop directly
+        >
           <View style={styles.modalImageContainer}>
-            <TouchableOpacity onPress={props.onCancel} style={styles.btnCancel}>
+            <TouchableOpacity
+              onPress={onCancel} // Use the onCancel prop directly
+              style={styles.btnCancel}>
               <Image
                 resizeMode="contain"
                 style={styles.imageCancel}

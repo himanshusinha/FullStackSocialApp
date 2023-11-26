@@ -19,3 +19,22 @@ export const getPostService = () => {
       });
   });
 };
+export const addPostService = data => {
+  console.log('FormData:', data); // Log FormData to inspect its structure
+  let config = {
+    url: SERVICE_ROUTES.ADD_POSTS,
+    method: METHODS.POST,
+    headers: {'Content-Type': 'multipart/form-data'},
+    data,
+  };
+  console.log(config, '.......config of add post');
+
+  return Axios.request(config)
+    .then(res => {
+      console.log(res, '.......response from signup services');
+      return res.data;
+    })
+    .catch(err => {
+      throw err;
+    });
+};

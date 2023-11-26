@@ -17,6 +17,8 @@ export default {
   camera: require('../assets/images/camera.png'),
   gallery: require('../assets/images/gallery.png'),
   dots: require('../assets/images/dots.png'),
+  delete: require('../assets/images/delete.png'),
+  edit: require('../assets/images/edit.png'),
 
   //light icons
   home_light: require('../assets/images/home_light.png'),
@@ -35,4 +37,6 @@ export default {
   camera_light: require('../assets/images/camera_light.png'),
   gallery_light: require('../assets/images/gallery_light.png'),
   dots_light: require('../assets/images/dots_light.png'),
+  delete_light: require('../assets/images/delete_light.png'),
+  edit_light: require('../assets/images/edit_light.png'),
 };

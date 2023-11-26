@@ -1,5 +1,5 @@
-import {View, Text, Image, TouchableOpacity} from 'react-native';
-import React, {useEffect} from 'react';
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import images from '../../constants/images';
 
@@ -28,8 +28,7 @@ const calculateTimeDifference = createdAt => {
     return 'just now';
   }
 };
-
-const ItemPosts = ({item}) => {
+const ItemPosts = ({item, index}) => {
   const timeAgo = calculateTimeDifference(item.createdAt);
 
   return (
@@ -45,10 +44,14 @@ const ItemPosts = ({item}) => {
           <Text style={styles.postTitle}>{item.caption}</Text>
           <Text style={styles.createdTitle}>{timeAgo}</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {}}>
           <Image style={styles.dotImage} source={images.dots} />
         </TouchableOpacity>
       </View>
+      <Image
+        style={{width: '100%', height: 200}}
+        source={{uri: item.imageUrl}}
+      />
       <Text style={styles.captionTitle}>{item.caption}</Text>
     </View>
   );

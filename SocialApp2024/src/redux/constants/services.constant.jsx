@@ -4,6 +4,7 @@ export const SERVICE_ROUTES = {
   SIGN_UP: '/api/v1/user/signup',
   GET_PROFILE_BY_ID: '/api/users/getUser/:id',
   GET_POSTS: '/api/post/getpost',
+  ADD_POSTS: 'http://192.168.1.38:8200/socialapp/api/post/addpost',
 };
 export const METHODS = {
   GET: 'GET',

@@ -4,6 +4,7 @@ export const ASYNC_ROUTES = {
   SIGN_UP: 'signUp',
   GET_PROFILE_BY_ID: 'getProfileById',
   GET_POSTS: 'getPosts',
+  ADD_POSTS: 'addPosts',
 };
 
 export const THUNK_STATUS = {
