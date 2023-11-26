@@ -1,5 +1,5 @@
 export default {
-  //dark
+  //dark icons
   home: require('../assets/images/home.png'),
   upload: require('../assets/images/upload.png'),
   account: require('../assets/images/account.png'),
@@ -12,8 +12,13 @@ export default {
   male: require('../assets/images/male.png'),
   female: require('../assets/images/female.png'),
   menu: require('../assets/images/menu.png'),
+  plus: require('../assets/images/plus.png'),
+  close: require('../assets/images/close.png'),
+  camera: require('../assets/images/camera.png'),
+  gallery: require('../assets/images/gallery.png'),
+  dots: require('../assets/images/dots.png'),
 
-  //light
+  //light icons
   home_light: require('../assets/images/home_light.png'),
   upload_light: require('../assets/images/upload_light.png'),
   account_light: require('../assets/images/account_light.png'),
@@ -25,4 +30,9 @@ export default {
   male_light: require('../assets/images/male_light.png'),
   female_light: require('../assets/images/female_light.png'),
   menu_light: require('../assets/images/menu_light.png'),
+  plus_light: require('../assets/images/plus_light.png'),
+  close_light: require('../assets/images/close_light.png'),
+  camera_light: require('../assets/images/camera_light.png'),
+  gallery_light: require('../assets/images/gallery_light.png'),
+  dots_light: require('../assets/images/dots_light.png'),
 };

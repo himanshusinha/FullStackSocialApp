@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getUserProfileByIdThunk} from '../../../redux/asyncThunk/authAsyncThunk';
 import styles from './styles';
 import AppButton from '../../../components/button/appButton/AppButton';
+import {useIsFocused} from '@react-navigation/native';
 
 const ProfileScreen = () => {
   const [userName, setUserName] = useState('');
@@ -13,8 +14,12 @@ const ProfileScreen = () => {
   const id = user._id;
 
   const dispatch = useDispatch();
-
+  const isFocused = useIsFocused();
   useEffect(() => {
+    getProfile();
+  }, [isFocused]);
+
+  const getProfile = () => {
     dispatch(getUserProfileByIdThunk({id: id}))
       .unwrap()
       .then(res => {
@@ -24,7 +29,7 @@ const ProfileScreen = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  };
   return (
     <WrapperContainer>
       <View style={styles.container}>

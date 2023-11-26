@@ -51,9 +51,8 @@ const LoginScreen = () => {
 
   return (
     <WrapperContainer>
-      <Modal transparent={true} animationType="none" visible={isLoading}>
-        {isLoading && <Loader />}
-      </Modal>
+      {isLoading ? <Loader /> : null}
+
       <Formik
         initialValues={{email: '', password: ''}}
         validationSchema={loginValidationSchema}
