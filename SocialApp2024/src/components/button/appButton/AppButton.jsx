@@ -13,12 +13,7 @@ const AppButton = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[
-        styles.buttonStyle,
-        disabled ? styles.disabledButton : null,
-        style, // Include the dynamic style
-        titleStyle,
-      ]}
+      style={[styles.buttonStyle, disabled, style, titleStyle]}
       disabled={disabled}>
       <Text style={titleStyle}>{isLoading ? 'Signing Up...' : title}</Text>
     </TouchableOpacity>

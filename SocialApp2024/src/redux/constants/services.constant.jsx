@@ -2,7 +2,8 @@ export const SERVICE_ROUTES = {
   LOGIN: '/api/v1/user/login',
   LOG_OUT: '/api/v1/user/logout',
   SIGN_UP: '/api/v1/user/signup',
-  GET_PROFILE_BY_ID: 'http://192.168.1.38:8200/socialapp/api/users/getUser/:id',
+  GET_PROFILE_BY_ID: '/api/users/getUser/:id',
+  GET_POSTS: '/api/post/getpost',
 };
 export const METHODS = {
   GET: 'GET',

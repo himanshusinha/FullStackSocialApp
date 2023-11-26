@@ -24,7 +24,6 @@ const SignUpScreen = () => {
   const [selectedGender, setSelectedGender] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [errorText, setErrorText] = useState('');
 
   const dispatch = useDispatch();
 
@@ -75,9 +74,7 @@ const SignUpScreen = () => {
 
   return (
     <WrapperContainer>
-      <Modal transparent={true} animationType="none" visible={isLoading}>
-        {isLoading && <Loader />}
-      </Modal>
+      {isLoading ? <Loader /> : null}
       <Formik
         initialValues={{
           username: '',

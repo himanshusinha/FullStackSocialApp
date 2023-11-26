@@ -3,6 +3,7 @@ export const ASYNC_ROUTES = {
   LOG_OUT: 'logOut',
   SIGN_UP: 'signUp',
   GET_PROFILE_BY_ID: 'getProfileById',
+  GET_POSTS: 'getPosts',
 };
 
 export const THUNK_STATUS = {
