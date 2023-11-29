@@ -2,11 +2,17 @@
 
 Create Api using nodes login , register , update user , delete user get users , get user by id , add post , update post , delete post , 
 get post , get post by id ,follow , unfollow , like post , add comment , delete comment , get comment by id , get comments update comments
+
 Apis are running on localhost
+
 User can register and login after successful login redirect to homescreen where all posts are showing from api
+
 User can edit post and delete posts working on likes user can comment on his own post
+
 User can follow and following posts user can add post using camera and gallery with caption and images are store in firebase cloud
+
 User can edit comments delete comments and post comments Profile showing user name email number of followers and followings and posts
+
 Tech stack react native navigations , drawer navigations ,bottom tab navigations firebase for storing images on cloud redux toolkit redux persist redux thunk etc
 
 
