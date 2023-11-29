@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   removeButton: {
-    backgroundColor: colors.WHITE,
     position: 'absolute',
     alignItems: 'flex-end',
   },
@@ -63,6 +62,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: moderateVerticalScale(30),
+  },
+  inputContainer: {width: '95%', marginTop: 20},
+  postDataContainer: {width: '100%', height: 200},
+  addButtonContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    marginEnd: 20,
   },
 });
 export default styles;

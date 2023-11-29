@@ -19,7 +19,9 @@ export default {
   dots: require('../assets/images/dots.png'),
   delete: require('../assets/images/delete.png'),
   edit: require('../assets/images/edit.png'),
-
+  like: require('../assets/images/like.png'),
+  comment: require('../assets/images/comment.png'),
+  liked: require('../assets/images/liked.png'),
   //light icons
   home_light: require('../assets/images/home_light.png'),
   upload_light: require('../assets/images/upload_light.png'),
@@ -39,4 +41,7 @@ export default {
   dots_light: require('../assets/images/dots_light.png'),
   delete_light: require('../assets/images/delete_light.png'),
   edit_light: require('../assets/images/edit_light.png'),
+  like_light: require('../assets/images/like_light.png'),
+  comment_light: require('../assets/images/comment_light.png'),
+  liked_light: require('../assets/images/liked_light.png'),
 };

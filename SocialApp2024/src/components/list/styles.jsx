@@ -39,12 +39,21 @@ const styles = StyleSheet.create({
     height: moderateScale(20),
     borderRadius: moderateScale(20),
     marginTop: 10,
+    marginEnd: 10,
+  },
+  deleteImage: {
+    width: moderateScale(20),
+    height: moderateScale(20),
+    borderRadius: moderateScale(20),
+    top: 25,
+    right: 2,
   },
   postTitle: {
     marginHorizontal: moderateScale(10),
     fontFamily: fonts.BARLOW_BOLD,
     marginTop: moderateVerticalScale(10),
     fontSize: scale(14),
+    color: colors.BLACK,
   },
   createdTitle: {
     fontFamily: fonts.BARLOW_MEDIUM,
@@ -56,8 +65,8 @@ const styles = StyleSheet.create({
   captionTitle: {
     marginHorizontal: moderateScale(10),
     fontFamily: fonts.BARLOW_BOLD,
-    fontSize: scale(10),
-    marginTop: 20,
+    fontSize: scale(12),
+    color: colors.BLACK,
   },
   menuStyle: {
     width: moderateScale(90),
@@ -84,9 +93,75 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: moderateScale(5),
-    paddingBottom: 10,
+    paddingBottom: moderateScale(10),
   },
-  iconDelete: {width: 20, height: 20, marginStart: moderateScale(10)},
+  iconDelete: {
+    width: moderateScale(20),
+    height: moderateScale(20),
+    marginStart: moderateScale(10),
+  },
   deleteTitle: {flex: 1, marginStart: moderateScale(10)},
+  postImageStyle: {
+    marginHorizontal: moderateScale(10),
+    paddingVertical: moderateScale(20),
+  },
+  postImageIcon: {width: '100%', height: moderateScale(150)},
+  userReaction: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: moderateScale(20),
+  },
+  iconLike: {
+    width: moderateScale(20),
+    height: moderateScale(20),
+  },
+  iconComment: {
+    width: moderateScale(20),
+    height: moderateScale(20),
+  },
+  likeContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  commentsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  containerComment: {
+    backgroundColor: colors.WHITE,
+    paddingBottom: 20,
+    marginHorizontal: 10,
+    flexDirection: 'row',
+    marginTop: moderateVerticalScale(10),
+    ...Platform.select({
+      android: {
+        elevation: 2,
+      },
+      ios: {
+        shadowColor: colors.BLACK,
+        shadowOffset: {width: 0, height: 2},
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+      },
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    }),
+  },
+  titleCount: {marginHorizontal: 15, color: colors.BLACK},
+
+  buttonFollowStyle: {
+    borderWidth: 1,
+    borderColor: 'black',
+    backgroundColor: colors.WHITE,
+    width: '20%',
+    height: moderateScale(30),
+    bottom: moderateScale(20),
+  },
+  titleFollowStyle: {color: colors.BLACK},
 });
 export default styles;

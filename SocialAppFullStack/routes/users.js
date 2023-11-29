@@ -115,19 +115,10 @@ router.put("/follow/:id", async (req, res) => {
         isFollowed = true;
       }
     });
-
     if (isFollowed) {
-      const res1 = await User.updateOne(
-        { _id: req.params.id },
-        { $pull: { followers: req.body.userId } }
-      );
-      const res2 = await User.updateOne(
-        { _id: req.body.userId },
-        { $pull: { following: req.params.id } }
-      );
       res
         .status(200)
-        .json({ status: false, message: "user unfollowed successfully" });
+        .json({ status: false, message: "you already following this user" });
     } else {
       const res1 = await User.updateOne(
         { _id: req.params.id },
@@ -135,7 +126,9 @@ router.put("/follow/:id", async (req, res) => {
       );
       const res2 = await User.updateOne(
         { _id: req.body.userId },
-        { $push: { following: req.params.id } }
+        {
+          $push: { following: req.body.userId },
+        }
       );
       res
         .status(200)

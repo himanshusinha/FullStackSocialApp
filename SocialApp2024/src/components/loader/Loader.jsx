@@ -8,6 +8,7 @@ const Loader = () => {
     <View style={styles.container}>
       <View style={styles.indicatorStyle}>
         <ActivityIndicator
+          size={'large'}
           color={colors.BLACK}
           style={{backgroundColor: 'transparent'}}
         />

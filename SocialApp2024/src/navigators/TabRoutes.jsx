@@ -6,6 +6,7 @@ import colors from '../constants/colors';
 import images from '../constants/images';
 import styles from './styles';
 import {HomeScreen, ProfileScreen, UploadScreen} from '../screens';
+import HomeStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,16 +19,12 @@ const TabRoutes = () => {
         tabBarActiveTintColor: colors.BLACK,
         tabBarInactiveTintColor: colors.GRAY,
         tabBarShowLabel: false,
-        tabBarHideOnKeyboard: true,
-        tabBarStyle: {
-          backgroundColor: colors.WHITE,
-          height: 80,
-        },
+        tabbarhideonkeyboard: true,
       }}>
       {/* Home TabBar */}
       <Tab.Screen
         name={routes.HOME}
-        component={HomeScreen}
+        component={HomeStack}
         options={{
           tabBarIcon: ({focused}) => (
             <View style={[{backgroundColor: focused ? colors.WHITE : null}]}>

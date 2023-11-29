@@ -1,11 +1,12 @@
 // Import necessary dependencies and actions
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   TextInput,
   TouchableOpacity,
   Image,
   Pressable,
+  Modal,
 } from 'react-native';
 import WrapperContainer from '../../../components/wrapperContainer/WrapperContainer';
 import images from '../../../constants/images';
@@ -15,7 +16,12 @@ import styles from './styles';
 import colors from '../../../constants/colors';
 import storage from '@react-native-firebase/storage';
 import {useDispatch, useSelector} from 'react-redux';
-import {addPostAsyncThunk} from '../../../redux/asyncThunk/postAsyncThunk';
+import {
+  addPostAsyncThunk,
+  getPostByIdAsyncThunk,
+} from '../../../redux/asyncThunk/postAsyncThunk';
+import Loader from '../../../components/loader/Loader';
+import {useNavigation} from '@react-navigation/native';
 
 const UploadScreen = () => {
   const dispatch = useDispatch();
@@ -26,9 +32,12 @@ const UploadScreen = () => {
   const [imageFile, setImageFile] = useState(null);
   const [userName, setUserName] = useState();
   const [imageUrl, setImageUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigation();
   const user = useSelector(state => state.auth.user);
   const userId = user._id;
   const username = user.username;
+  const [postCount, setPostCount] = useState(0);
 
   const showModal = () => {
     setModalVisible(true);
@@ -49,59 +58,9 @@ const UploadScreen = () => {
   const handleImageFile = file => {
     setImageFile(file);
   };
-  // const uploadImageToFirebase = async () => {
-  //   try {
-  //     if (selectedImage !== '') {
-  //       console.log('Selected Image:', selectedImage.path);
 
-  //       const reference = storage().ref(selectedImage);
-  //       const pathToFile = selectedImage;
-
-  //       // Uploads the file
-  //       await reference.putFile(pathToFile);
-
-  //       // Get the download URL
-  //       const url = await reference.getDownloadURL();
-  //       console.log('Download URL:', url);
-
-  //       const formData = new FormData();
-  //       formData.append('userId', userId);
-  //       formData.append('caption', caption);
-  //       formData.append('username', username);
-
-  //       if (selectedImage !== '') {
-  //         const fileName = selectedImage.split('/').pop();
-  //         const file = {
-  //           uri: url, // Use the URL, not 'reference.getDownloadURL()'
-  //           type: 'image/jpeg',
-  //           name: fileName,
-  //         };
-  //         formData.append('imageUrl', file);
-  //       }
-
-  //       // Dispatch the action with formData
-  //       const response = await dispatch(addPostAsyncThunk(formData));
-  //       console.log('res...........', response);
-
-  //       // Assuming navigation is defined
-  //       // navigation.navigate(Routes.LOGIN);
-
-  //       setId(userId);
-  //       setUserName(userName);
-  //       setImageUrl(url);
-  //       setSelectedImage(pathToFile);
-
-  //       // Access the API response
-  //       console.log('API Response:', response);
-  //     } else {
-  //       console.log('No selected image.');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error in uploadImageToFirebase:', error);
-  //     // Handle error (log, display, etc.)
-  //   }
-  // };
   const uploadImageToFirebase = async () => {
+    setIsLoading(true);
     try {
       if (selectedImage !== '') {
         console.log('Selected Image:', selectedImage);
@@ -120,37 +79,46 @@ const UploadScreen = () => {
         formData.append('caption', caption);
         formData.append('username', username);
 
-        // Append the download URL to the formData
         formData.append('imageUrl', url);
 
-        // Dispatch the action with formData
-        const response = await dispatch(addPostAsyncThunk(formData));
-        console.log('res...........', response);
-
-        // Assuming navigation is defined
-        // navigation.navigate(Routes.LOGIN);
-
+        const response = await dispatch(addPostAsyncThunk(formData))
+          .unwrap()
+          .then(res => {
+            setId(userId);
+            setUserName(userName);
+            setImageUrl(url);
+            setIsLoading(false);
+          })
+          .catch(err => console.log(err));
         setId(userId);
         setUserName(userName);
         setImageUrl(url);
-
-        // Use the local path directly for displaying the image
+        setIsLoading(false);
         setSelectedImage(pathToFile);
+        navigation.navigate('HomeScreen');
       } else {
         console.log('No selected image.');
+        setIsLoading(false);
       }
     } catch (error) {
       console.error('Error in uploadImageToFirebase:', error);
+      setIsLoading(false);
     }
   };
 
   return (
     <WrapperContainer>
+      {isLoading ? (
+        <Modal transparent={true}>
+          <Loader />
+        </Modal>
+      ) : null}
       <View style={styles.buttonContainer}>
         <View style={{width: '95%', marginTop: 20}}>
           <TextInput
             value={caption}
             onChangeText={handleCaptionChange}
+            textAlignVertical="top"
             style={{
               height: 100,
               borderWidth: 0.5,
@@ -220,8 +188,26 @@ const UploadScreen = () => {
         </View>
 
         <View style={{flex: 1}}>
-          <Pressable onPress={showModal} style={styles.addButtonStyle}>
-            <Image source={images.plus} style={styles.plusIcon} />
+          <Pressable
+            disabled={caption === '' && selectedImage === ''}
+            onPress={showModal}
+            style={{
+              ...styles.addButtonStyle,
+              backgroundColor:
+                caption === '' && selectedImage === ''
+                  ? colors.GRAY
+                  : colors.BLACK,
+            }}>
+            <Image
+              source={images.plus}
+              style={{
+                ...styles.plusIcon,
+                tintColor:
+                  caption === '' && selectedImage === ''
+                    ? colors.BLACK
+                    : colors.WHITE,
+              }}
+            />
           </Pressable>
         </View>
       </View>

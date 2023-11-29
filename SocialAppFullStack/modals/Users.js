@@ -49,9 +49,15 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-    following: {
-      type: Array,
-      default: [],
+    following: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User", // This should match the model name
+      },
+    ],
+    profilePic: {
+      type: String,
+      default: "",
     },
   },
   { timestamps: true }

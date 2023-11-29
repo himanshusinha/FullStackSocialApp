@@ -13,4 +13,5 @@ export default {
   AUTH_STACK: 'AuthStack',
   APP_STACK: 'AppStack',
   ROOT: 'RootScreen',
+  COMMENTS: 'CommentsScreen',
 };

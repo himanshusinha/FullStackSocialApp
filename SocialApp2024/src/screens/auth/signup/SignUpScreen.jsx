@@ -31,7 +31,6 @@ const SignUpScreen = () => {
     const genderString = selectedGender === 0 ? 'Male' : 'Female';
 
     values.gender = genderString;
-    setIsLoading(true);
 
     const payload = {
       username: values.username,
@@ -45,36 +44,27 @@ const SignUpScreen = () => {
       .then(res => {
         if (res && res.data.status === 200) {
           console.log('User signed up successfully');
-          setIsLoading(false);
         } else {
           console.log('Incorrect credentials');
-          setIsLoading(false);
         }
       })
       .catch(err => {
         if (err.response && err.response.status === 400) {
           console.log(err.response.status);
-          setErrorMessage(err.response.data.message);
-          setIsLoading(false);
         } else if (err.response && err.response.status === 401) {
           console.log(err.response.status);
-          setErrorMessage(err.response.data.message);
-          setIsLoading(false);
         } else {
           console.log('Something went wrong');
           setErrorMessage(err.response.data.message);
-          setIsLoading(false);
         }
       })
       .finally(() => {
         setSubmitting(false);
-        setIsLoading(false);
       });
   };
 
   return (
     <WrapperContainer>
-      {isLoading ? <Loader /> : null}
       <Formik
         initialValues={{
           username: '',
