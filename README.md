@@ -1,6 +1,6 @@
 # FullStackSocialApp
 
-Create Api using nodes login , register , update user , delete user get users , get user by id , add post , update post , delete post , 
+Create Api using node js login , register , update user , delete user get users , get user by id , add post , update post , delete post , 
 get post , get post by id ,follow , unfollow , like post , add comment , delete comment , get comment by id , get comments update comments
 
 Apis are running on localhost
